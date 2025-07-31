@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:prag_cat_breed/features/cat_breed/domain/models/breed.dart'
+    hide Image;
+import 'package:prag_cat_breed/features/cat_breed/presentation/breed_detail_screen.dart';
 
 class CatCard extends StatelessWidget {
-  final String name;
-  final String imageUrl;
-  final String origin;
-  final int intelligence;
-
-  const CatCard({
-    super.key,
-    required this.name,
-    required this.imageUrl,
-    required this.origin,
-    required this.intelligence,
-  });
+  const CatCard({super.key, required this.breed});
+  final Breed breed;
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +22,21 @@ class CatCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  name,
+                  breed.name,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => BreedDetailScreen(breed: breed),
+                      ),
+                    );
+                  },
                   child: const Text(
                     'Más...',
                     style: TextStyle(color: Color(0xFF2F81F7)),
@@ -51,8 +51,8 @@ class CatCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: FadeInImage.assetNetwork(
                 placeholder: 'assets/loading_cat.gif',
-                fadeOutDuration:Duration(milliseconds: 100) ,
-                image: imageUrl,
+                fadeOutDuration: Duration(milliseconds: 100),
+                image: breed.image?.url ?? '',
                 height: 180,
                 fit: BoxFit.cover,
                 imageErrorBuilder: (context, error, stackTrace) {
@@ -71,11 +71,11 @@ class CatCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "País: $origin",
+                  "País: ${breed.origin}",
                   style: const TextStyle(color: Colors.white70),
                 ),
                 Text(
-                  "Inteligencia: $intelligence",
+                  "Inteligencia: ${breed.intelligence}",
                   style: const TextStyle(color: Colors.white70),
                 ),
               ],

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prag_cat_breed/features/cat_breed/application/providers.dart';
@@ -98,10 +97,7 @@ class _CatBreedsScreenState extends ConsumerState<CatBreedsScreen> {
                           itemBuilder: (context, index) {
                             final breed = results[index];
                             return CatCard(
-                              name: breed.name,
-                              imageUrl: breed.image?.url ?? '',
-                              origin: breed.origin,
-                              intelligence: breed.intelligence,
+                              breed: breed,
                             );
                           },
                         );

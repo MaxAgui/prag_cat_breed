@@ -49,10 +49,7 @@ class _ListaCatCardsState extends ConsumerState<ListaCatCards> {
             if (index < breeds.length) {
               final breed = breeds[index];
               return CatCard(
-                name: breed.name,
-                imageUrl: breed.image?.url ?? '',
-                origin: breed.origin,
-                intelligence: breed.intelligence,
+                breed: breed,
               );
             } else {
               return const Padding(
