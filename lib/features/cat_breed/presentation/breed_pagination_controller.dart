@@ -5,8 +5,7 @@ import 'package:prag_cat_breed/features/cat_breed/domain/models/breed.dart';
 class BreedPaginationController extends StateNotifier<AsyncValue<List<Breed>>> {
   final DioCatBreedRepository _repository;
 
-  BreedPaginationController(this._repository)
-      : super(const AsyncLoading()) {
+  BreedPaginationController(this._repository) : super(const AsyncLoading()) {
     _fetchNextPage(); // carga inicial
   }
 
@@ -34,4 +33,7 @@ class BreedPaginationController extends StateNotifier<AsyncValue<List<Breed>>> {
   }
 
   void loadMore() => _fetchNextPage();
+
+  bool get hasMore => _hasMore;
+  bool get isLoading => _isLoading;
 }

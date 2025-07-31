@@ -49,19 +49,13 @@ class DioCatBreedRepository {
       );
       final List<dynamic> rawData = response.data;
       return rawData.map<Breed>((json) => Breed.fromJson(json)).toList();
-    } on DioException catch (e, stackTrace) {
-      print('Dio error: ${e.message}');
-      print('Response data: ${e.response?.data}');
-      print('Stack trace: $stackTrace');
-
+    } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError ||
           e.error is SocketException) {
         throw Exception('No internet connection');
       }
       throw Exception('Unknown Dio error: ${e.message}');
-    } catch (e, stackTrace) {
-      print('Unexpected error: $e');
-      print('Stack trace: $stackTrace');
+    } catch (e) {
       rethrow;
     }
   }

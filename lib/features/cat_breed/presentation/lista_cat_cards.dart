@@ -36,25 +36,27 @@ class _ListaCatCardsState extends ConsumerState<ListaCatCards> {
   @override
   Widget build(BuildContext context) {
     final catBreedsAsync = ref.watch(catBreedsPaginatedProvider);
+    final notifier = ref.read(catBreedsPaginatedProvider.notifier);
 
     return catBreedsAsync.when(
       data: (breeds) {
+        final showLoader = notifier.hasMore || notifier.isLoading;
+
         return ListView.builder(
           controller: _scrollController,
-          itemCount: breeds.length + 1,
+          itemCount: breeds.length + (showLoader ? 1 : 0),
           itemBuilder: (context, index) {
             if (index < breeds.length) {
               final breed = breeds[index];
               return CatCard(
                 name: breed.name,
-                imageUrl: breed.image.url,
+                imageUrl: breed.image?.url ?? '',
                 origin: breed.origin,
                 intelligence: breed.intelligence,
               );
             } else {
-              // loader final
               return const Padding(
-                padding: EdgeInsets.all(24),
+                padding: EdgeInsets.all(16),
                 child: Center(child: CircularProgressIndicator()),
               );
             }
@@ -62,7 +64,7 @@ class _ListaCatCardsState extends ConsumerState<ListaCatCards> {
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, _) => Center(child: Text('Error: $e')),
+      error: (e, _) => Center(child: Text('Hubo un error')),
     );
   }
 }

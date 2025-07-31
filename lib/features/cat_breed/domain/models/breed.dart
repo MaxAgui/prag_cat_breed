@@ -33,10 +33,10 @@ class Breed {
     final int rex;
     final int suppressedTail;
     final int shortLegs;
-    final String wikipediaUrl;
+    final String? wikipediaUrl;
     final int hypoallergenic;
-    final String referenceImageId;
-    final Image image;
+    final String? referenceImageId;
+    final Image? image;
     final int? catFriendly;
     final int? bidability;
 
@@ -75,10 +75,10 @@ class Breed {
         required this.rex,
         required this.suppressedTail,
         required this.shortLegs,
-        required this.wikipediaUrl,
+        this.wikipediaUrl,
         required this.hypoallergenic,
-        required this.referenceImageId,
-        required this.image,
+        this.referenceImageId,
+        this.image,
         this.catFriendly,
         this.bidability,
     });
@@ -121,7 +121,7 @@ class Breed {
         wikipediaUrl: json["wikipedia_url"],
         hypoallergenic: json["hypoallergenic"],
         referenceImageId: json["reference_image_id"],
-        image: Image.fromJson(json["image"]),
+        image: json["image"] == null ? null : Image.fromJson(json["image"]),
         catFriendly: json["cat_friendly"],
         bidability: json["bidability"],
     );
@@ -164,7 +164,7 @@ class Breed {
         "wikipedia_url": wikipediaUrl,
         "hypoallergenic": hypoallergenic,
         "reference_image_id": referenceImageId,
-        "image": image.toJson(),
+        "image": image?.toJson(),
         "cat_friendly": catFriendly,
         "bidability": bidability,
     };

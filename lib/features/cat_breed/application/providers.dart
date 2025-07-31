@@ -16,8 +16,11 @@ final catBreedsPaginatedProvider = StateNotifierProvider<BreedPaginationControll
   },
 );
 
-final catBreedsSearchProvider = FutureProvider.autoDispose<List<Breed>>((ref) async {
+final catSearchQueryProvider = StateProvider<String>((ref) => '');
+
+final catBreedsSearchProvider = FutureProvider.autoDispose.family<List<Breed>, String>((ref, query) async {
   final repository = ref.watch(catBreedRepositoryProvider);
-  return repository.searchBreeds(query: 'a');
+  if (query.isEmpty) return [];
+  return repository.searchBreeds(query: query);
 });
 
