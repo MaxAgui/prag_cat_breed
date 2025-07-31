@@ -36,7 +36,7 @@ flutter_native_splash:
 flutter:
   uses-material-design: true
   assets:
-    - assets/splash_logo.png
+    - assets/loading_cat.gif
     - assets/images/
 
 

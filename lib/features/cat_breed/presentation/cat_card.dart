@@ -49,11 +49,12 @@ class CatCard extends StatelessWidget {
             // Cat image
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                imageUrl,
+              child: FadeInImage.assetNetwork(
+                placeholder: 'assets/loading_cat.gif',
+                image: imageUrl,
                 height: 180,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
+                imageErrorBuilder: (context, error, stackTrace) {
                   return Image.asset(
                     'assets/images/sad_cat.png',
                     height: 180,
