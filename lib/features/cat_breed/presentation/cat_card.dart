@@ -51,6 +51,7 @@ class CatCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: FadeInImage.assetNetwork(
                 placeholder: 'assets/loading_cat.gif',
+                fadeOutDuration:Duration(milliseconds: 100) ,
                 image: imageUrl,
                 height: 180,
                 fit: BoxFit.cover,

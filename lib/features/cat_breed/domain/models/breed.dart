@@ -13,7 +13,7 @@ class Breed {
     final String lifeSpan;
     final int indoor;
     final int? lap;
-    final String altNames;
+    final String? altNames;
     final int adaptability;
     final int affectionLevel;
     final int childFriendly;
@@ -37,6 +37,8 @@ class Breed {
     final int hypoallergenic;
     final String referenceImageId;
     final Image image;
+    final int? catFriendly;
+    final int? bidability;
 
     Breed({
         required this.weight,
@@ -53,7 +55,7 @@ class Breed {
         required this.lifeSpan,
         required this.indoor,
         this.lap,
-        required this.altNames,
+        this.altNames,
         required this.adaptability,
         required this.affectionLevel,
         required this.childFriendly,
@@ -77,6 +79,8 @@ class Breed {
         required this.hypoallergenic,
         required this.referenceImageId,
         required this.image,
+        this.catFriendly,
+        this.bidability,
     });
 
     factory Breed.fromJson(Map<String, dynamic> json) => Breed(
@@ -118,6 +122,8 @@ class Breed {
         hypoallergenic: json["hypoallergenic"],
         referenceImageId: json["reference_image_id"],
         image: Image.fromJson(json["image"]),
+        catFriendly: json["cat_friendly"],
+        bidability: json["bidability"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -159,6 +165,8 @@ class Breed {
         "hypoallergenic": hypoallergenic,
         "reference_image_id": referenceImageId,
         "image": image.toJson(),
+        "cat_friendly": catFriendly,
+        "bidability": bidability,
     };
 }
 

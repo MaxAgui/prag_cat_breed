@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prag_cat_breed/features/cat_breed/application/providers.dart';
-import 'package:prag_cat_breed/features/cat_breed/presentation/cat_card.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/lista_cat_cards.dart';
 
 class CatBreedsScreen extends StatelessWidget {
   const CatBreedsScreen({super.key});
@@ -44,30 +42,3 @@ class CatBreedsScreen extends StatelessWidget {
   }
 }
 
-class ListaCatCards extends ConsumerWidget {
-  const ListaCatCards({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final catBreedsAsync = ref.watch(catBreedsPaginatedProvider);
-
-    return catBreedsAsync.when(
-      data: (catBreeds) {
-        return ListView.builder(
-          itemCount: catBreeds.length,
-          itemBuilder: (context, index) {
-            final breed = catBreeds[index];
-            return CatCard(
-              name: breed.name,
-              imageUrl: breed.image.url,
-              origin: breed.origin,
-              intelligence: breed.intelligence,
-            );
-          },
-        );
-      },
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, __) => Center(child: Text('Hubo un error.')),
-    );
-  }
-}
