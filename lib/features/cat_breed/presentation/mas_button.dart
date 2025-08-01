@@ -11,33 +11,32 @@ class MasButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Platform.isIOS
-  ? CupertinoButton(
-      padding: EdgeInsets.zero,
-      child: const Text(
-        'Más...',
-        style: TextStyle(color: Color(0xFF2F81F7)),
-      ),
-      onPressed: () {
-        Navigator.of(context).push(
-          CupertinoPageRoute(
-            builder: (_) => BreedDetailScreen(breed: breed),
-          ),
-        );
-      },
-    )
-  : TextButton(
-      onPressed: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => BreedDetailScreen(breed: breed),
-          ),
-        );
-      },
-      child: const Text(
-        'Más...',
-        style: TextStyle(color: Color(0xFF2F81F7)),
-      ),
-    )
-;
+        ? CupertinoButton(
+            padding: EdgeInsets.zero,
+            child: Text(
+              'Más...',
+              style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            ),
+            onPressed: () {
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (_) => BreedDetailScreen(breed: breed),
+                ),
+              );
+            },
+          )
+        : TextButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => BreedDetailScreen(breed: breed),
+                ),
+              );
+            },
+            child: Text(
+              'Más...',
+              style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            ),
+          );
   }
 }
