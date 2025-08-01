@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   flutter_native_splash: ^2.4.6
+  dio: ^5.8.0+1
+  riverpod: ^2.6.1
+  flutter_riverpod: ^2.6.1
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +36,7 @@ flutter_native_splash:
 flutter:
   uses-material-design: true
   assets:
-    - assets/splash_logo.png
+    - assets/loading_cat.gif
+    - assets/images/
 
 
