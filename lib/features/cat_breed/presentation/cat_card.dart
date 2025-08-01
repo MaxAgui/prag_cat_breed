@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prag_cat_breed/features/cat_breed/domain/models/breed.dart'
     hide Image;
-import 'package:prag_cat_breed/features/cat_breed/presentation/breed_detail_screen.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/mas_button.dart';
 
 class CatCard extends StatelessWidget {
   const CatCard({super.key, required this.breed});
@@ -16,6 +16,7 @@ class CatCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
+          spacing: 10,
           children: [
             // Title Row
             Row(
@@ -28,23 +29,9 @@ class CatCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => BreedDetailScreen(breed: breed),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'Más...',
-                    style: TextStyle(color: Color(0xFF2F81F7)),
-                  ),
-                ),
+                MasButton(breed: breed),
               ],
             ),
-            const SizedBox(height: 8),
 
             // Cat image
             ClipRRect(
@@ -64,7 +51,6 @@ class CatCard extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox(height: 12),
 
             // Origin & Intelligence
             Row(
