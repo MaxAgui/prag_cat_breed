@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prag_cat_breed/features/cat_breed/data/repositories/cat_breed_repository.dart';
-import 'package:prag_cat_breed/features/cat_breed/domain/models/breed.dart';
+import 'package:prag_cat_breed/features/cat_breed/domain/entities/breed.dart';
 
 class BreedPaginationController extends StateNotifier<AsyncValue<List<Breed>>> {
   final DioCatBreedRepository _repository;

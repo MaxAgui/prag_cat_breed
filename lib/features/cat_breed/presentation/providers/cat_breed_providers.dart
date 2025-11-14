@@ -1,10 +1,10 @@
 import 'package:prag_cat_breed/features/cat_breed/data/repositories/cat_breed_repository.dart';
-import 'package:prag_cat_breed/features/cat_breed/domain/models/breed_image.dart';
-import 'package:prag_cat_breed/features/cat_breed/domain/models/breed.dart';
-import 'package:prag_cat_breed/features/cat_breed/presentation/breed_pagination_controller.dart';
+import 'package:prag_cat_breed/features/cat_breed/domain/entities/breed.dart';
+import 'package:prag_cat_breed/features/cat_breed/domain/entities/image_breed.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/controllers/breed_pagination_controller.dart';
 import 'package:riverpod/riverpod.dart';
 
-final catBreedsImagesProvider = FutureProvider.autoDispose<List<BreedImage>>((ref) async {
+final catBreedsImagesProvider = FutureProvider.autoDispose<List<ImageBreed>>((ref) async {
   final repository = ref.watch(catBreedRepositoryProvider);
   return repository.getImageBreeds();
 });
@@ -23,4 +23,3 @@ final catBreedsSearchProvider = FutureProvider.autoDispose.family<List<Breed>, S
   if (query.isEmpty) return [];
   return repository.searchBreeds(query: query);
 });
-

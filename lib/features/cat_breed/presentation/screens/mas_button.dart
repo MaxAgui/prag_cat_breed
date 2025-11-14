@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:prag_cat_breed/features/cat_breed/domain/models/breed.dart';
-import 'package:prag_cat_breed/features/cat_breed/presentation/breed_detail_screen.dart';
+import 'package:prag_cat_breed/features/cat_breed/domain/entities/breed.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/screens/breed_detail_screen.dart';
 
 class MasButton extends StatelessWidget {
   const MasButton({super.key, required this.breed});

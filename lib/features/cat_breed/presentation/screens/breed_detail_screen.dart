@@ -1,8 +1,7 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:prag_cat_breed/features/cat_breed/domain/models/breed.dart'
-    hide Image;
+import 'package:prag_cat_breed/features/cat_breed/domain/entities/breed.dart';
 
 class BreedDetailScreen extends StatelessWidget {
   const BreedDetailScreen({super.key, required this.breed});

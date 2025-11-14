@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prag_cat_breed/features/cat_breed/presentation/cat_breeds_screen.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/screens/cat_breeds_screen.dart';
 import 'package:prag_cat_breed/theme/app_theme.dart';
 
 void main() {

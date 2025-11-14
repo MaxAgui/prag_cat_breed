@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prag_cat_breed/api/api.dart';
 import 'package:prag_cat_breed/api/api_keys.dart';
 import 'package:prag_cat_breed/core/config/dio_config.dart';
-import 'package:prag_cat_breed/features/cat_breed/domain/models/breed_image.dart';
-import 'package:prag_cat_breed/features/cat_breed/domain/models/breed.dart';
+import 'package:prag_cat_breed/features/cat_breed/data/models/breed_model.dart';
+import 'package:prag_cat_breed/features/cat_breed/data/models/image_breed_model.dart';
+import 'package:prag_cat_breed/features/cat_breed/domain/entities/breed.dart';
+import 'package:prag_cat_breed/features/cat_breed/domain/entities/image_breed.dart';
 
 class DioCatBreedRepository {
   final TheCatAPI api;
@@ -13,7 +15,7 @@ class DioCatBreedRepository {
 
   DioCatBreedRepository({required this.api, required this.client});
 
-  Future<List<BreedImage>> getImageBreeds({
+  Future<List<ImageBreed>> getImageBreeds({
     int page = 0,
     int limit = 10,
   }) async {
@@ -28,7 +30,7 @@ class DioCatBreedRepository {
       );
       final List<dynamic> rawData = response.data;
       return rawData
-          .map<BreedImage>((json) => BreedImage.fromJson(json))
+          .map<ImageBreedModel>((json) => ImageBreedModel.fromJson(json))
           .toList();
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError ||
@@ -48,7 +50,7 @@ class DioCatBreedRepository {
         options: Options(headers: {'x-api-key': api.apiKey}),
       );
       final List<dynamic> rawData = response.data;
-      return rawData.map<Breed>((json) => Breed.fromJson(json)).toList();
+      return rawData.map<BreedModel>((json) => BreedModel.fromJson(json)).toList();
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError ||
           e.error is SocketException) {
@@ -75,7 +77,7 @@ class DioCatBreedRepository {
         options: Options(headers: {'x-api-key': api.apiKey}),
       );
       final List<dynamic> rawData = response.data;
-      return rawData.map<Breed>((json) => Breed.fromJson(json)).toList();
+      return rawData.map<BreedModel>((json) => BreedModel.fromJson(json)).toList();
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError ||
           e.error is SocketException) {
