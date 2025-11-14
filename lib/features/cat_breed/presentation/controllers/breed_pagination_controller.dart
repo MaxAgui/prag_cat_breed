@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prag_cat_breed/features/cat_breed/data/repositories/cat_breed_repository.dart';
 import 'package:prag_cat_breed/features/cat_breed/domain/entities/breed.dart';
+import 'package:prag_cat_breed/features/cat_breed/domain/use_cases/get_breeds_use_case.dart';
 
 class BreedPaginationController extends StateNotifier<AsyncValue<List<Breed>>> {
-  final DioCatBreedRepository _repository;
+  final GetBreedsUseCase _getBreeds;
 
-  BreedPaginationController(this._repository) : super(const AsyncLoading()) {
+  BreedPaginationController(this._getBreeds) : super(const AsyncLoading()) {
     _fetchNextPage(); // carga inicial
   }
 
@@ -20,7 +20,7 @@ class BreedPaginationController extends StateNotifier<AsyncValue<List<Breed>>> {
 
     _isLoading = true;
     try {
-      final newBreeds = await _repository.getBreeds(page: _page, limit: _limit);
+      final newBreeds = await _getBreeds(page: _page, limit: _limit);
       if (newBreeds.length < _limit) _hasMore = false;
       _allBreeds.addAll(newBreeds);
       _page++;
