@@ -152,6 +152,31 @@ void main() {
         ),
       );
     });
+
+    test(
+      'getBreeds lanza Ocurrió un error cuando ocurre excepción NO DioException',
+      () async {
+        // *Importante:* Lanzamos una excepción normal, no DioException
+        when(
+          () => dio.get(
+            any(),
+            queryParameters: any(named: 'queryParameters'),
+            options: any(named: 'options'),
+          ),
+        ).thenThrow(FormatException("Invalid format"));
+
+        expect(
+          () => repository.getBreeds(),
+          throwsA(
+            isA<Exception>().having(
+              (e) => e.toString(),
+              'mensaje',
+              contains('Ocurrió un error'),
+            ),
+          ),
+        );
+      },
+    );
   });
 
   group('searchBreeds', () {
@@ -257,5 +282,33 @@ void main() {
         ),
       );
     });
+
+    test(
+      'lanza "Ocurrió un error" para errores inesperados sin dioexception',
+      () async {
+        when(
+          () => params.searchBreeds('aby', true),
+        ).thenReturn({"q": "aby", "attach_image": "true"});
+
+        when(
+          () => dio.get(
+            any(),
+            queryParameters: any(named: 'queryParameters'),
+            options: any(named: 'options'),
+          ),
+        ).thenThrow(FormatException("Invalid format"));
+
+        expect(
+          () => repository.searchBreeds(query: 'aby'),
+          throwsA(
+            isA<Exception>().having(
+              (e) => e.toString(),
+              'message',
+              contains('Ocurrió un error'),
+            ),
+          ),
+        );
+      },
+    );
   });
 }
