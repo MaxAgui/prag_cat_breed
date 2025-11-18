@@ -3,9 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:prag_cat_breed/core/config/api_config.dart';
 import 'package:prag_cat_breed/features/cat_breed/data/datasources/cat_breed_api_params.dart';
 import 'package:prag_cat_breed/features/cat_breed/data/models/breed_model.dart';
-import 'package:prag_cat_breed/features/cat_breed/data/models/image_breed_model.dart';
 import 'package:prag_cat_breed/features/cat_breed/domain/entities/breed.dart';
-import 'package:prag_cat_breed/features/cat_breed/domain/entities/image_breed.dart';
 import 'package:prag_cat_breed/features/cat_breed/domain/repositories/breed_repository.dart';
 
 class DioCatBreedRepository implements BreedRepository {
@@ -18,30 +16,6 @@ class DioCatBreedRepository implements BreedRepository {
     required this.apiKey,
     required this.params,
   });
-
-  @override
-  Future<List<ImageBreed>> getImageBreeds({
-    int page = 0,
-    int limit = 10,
-  }) async {
-    try {
-      final response = await client.get(
-        '${ApiConfig.baseUrl}images/search',
-        queryParameters: params.images(page, limit),
-        options: Options(headers: {'x-api-key': apiKey}),
-      );
-      final List<dynamic> rawData = response.data;
-      return rawData
-          .map<ImageBreedModel>((json) => ImageBreedModel.fromJson(json))
-          .toList();
-    } on DioException catch (e) {
-      if (e.type == DioExceptionType.connectionError ||
-          e.error is SocketException) {
-        throw Exception('No internet connection');
-      }
-      throw Exception('Unknown Dio error');
-    }
-  }
 
   /// GET /breeds - Lista paginada de razas
   @override
@@ -61,9 +35,9 @@ class DioCatBreedRepository implements BreedRepository {
           e.error is SocketException) {
         throw Exception('No internet connection');
       }
-      throw Exception('Unknown Dio error: ${e.message}');
+      throw Exception('Ocurrió un error');
     } catch (e) {
-      rethrow;
+      throw Exception('Ocurrió un error');
     }
   }
 
@@ -88,7 +62,9 @@ class DioCatBreedRepository implements BreedRepository {
           e.error is SocketException) {
         throw Exception('No internet connection');
       }
-      throw Exception('Unknown Dio error');
+      throw Exception('Ocurrió un error');
+    } catch (e) {
+      throw Exception('Ocurrió un error');
     }
   }
 }

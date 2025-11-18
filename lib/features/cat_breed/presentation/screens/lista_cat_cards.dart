@@ -61,7 +61,7 @@ class _ListaCatCardsState extends ConsumerState<ListaCatCards> {
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, _) => Center(child: Text('Hubo un error')),
+      error: (e, _) => Center(child: Text(e.toString())),
     );
   }
 }
