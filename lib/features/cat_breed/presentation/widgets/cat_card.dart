@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prag_cat_breed/features/cat_breed/domain/entities/breed.dart';
-import 'package:prag_cat_breed/features/cat_breed/presentation/screens/mas_button.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/widgets/mas_button.dart';
 
 class CatCard extends StatelessWidget {
   const CatCard({super.key, required this.breed});

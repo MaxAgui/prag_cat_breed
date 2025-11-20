@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prag_cat_breed/features/cat_breed/presentation/providers/cat_breed_providers.dart';
-import 'package:prag_cat_breed/features/cat_breed/presentation/screens/cat_card.dart';
-import 'package:prag_cat_breed/features/cat_breed/presentation/screens/lista_cat_cards.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/widgets/cat_card.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/widgets/lista_cat_cards.dart';
 
 class CatBreedsScreen extends StatelessWidget {
   const CatBreedsScreen({super.key});

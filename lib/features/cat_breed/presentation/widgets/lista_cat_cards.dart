@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prag_cat_breed/features/cat_breed/presentation/providers/cat_breed_providers.dart';
-import 'package:prag_cat_breed/features/cat_breed/presentation/screens/cat_card.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/widgets/cat_card.dart';
 
 class ListaCatCards extends ConsumerStatefulWidget {
   const ListaCatCards({super.key});
@@ -48,9 +48,7 @@ class _ListaCatCardsState extends ConsumerState<ListaCatCards> {
           itemBuilder: (context, index) {
             if (index < breeds.length) {
               final breed = breeds[index];
-              return CatCard(
-                breed: breed,
-              );
+              return CatCard(breed: breed);
             } else {
               return const Padding(
                 padding: EdgeInsets.all(16),

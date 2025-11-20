@@ -1,14 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:prag_cat_breed/features/cat_breed/presentation/providers/usecases_providers.dart';
 import 'package:riverpod/riverpod.dart';
 
 import 'package:prag_cat_breed/features/cat_breed/domain/use_cases/get_breeds_use_case.dart';
 import 'package:prag_cat_breed/features/cat_breed/domain/use_cases/search_breeds_use_case.dart';
 import 'package:prag_cat_breed/features/cat_breed/presentation/providers/cat_breed_providers.dart';
-import 'package:prag_cat_breed/features/cat_breed/domain/repositories/breed_repository.dart';
 
-class MockBreedRepository extends Mock implements BreedRepository {}
+import '../../../../mocks.dart';
 
 void main() {
   group("UseCase Providers", () {
@@ -16,9 +14,7 @@ void main() {
       final mockRepo = MockBreedRepository();
 
       final container = ProviderContainer(
-        overrides: [
-          catBreedRepositoryProvider.overrideWithValue(mockRepo),
-        ],
+        overrides: [catBreedRepositoryProvider.overrideWithValue(mockRepo)],
       );
 
       final usecase = container.read(getBreedsUseCaseProvider);
@@ -30,9 +26,7 @@ void main() {
       final mockRepo = MockBreedRepository();
 
       final container = ProviderContainer(
-        overrides: [
-          catBreedRepositoryProvider.overrideWithValue(mockRepo),
-        ],
+        overrides: [catBreedRepositoryProvider.overrideWithValue(mockRepo)],
       );
 
       final usecase = container.read(getBreedsUseCaseProvider);
@@ -45,9 +39,7 @@ void main() {
       final mockRepo = MockBreedRepository();
 
       final container = ProviderContainer(
-        overrides: [
-          catBreedRepositoryProvider.overrideWithValue(mockRepo),
-        ],
+        overrides: [catBreedRepositoryProvider.overrideWithValue(mockRepo)],
       );
 
       final usecase = container.read(searchBreedsUseCaseProvider);
@@ -59,9 +51,7 @@ void main() {
       final mockRepo = MockBreedRepository();
 
       final container = ProviderContainer(
-        overrides: [
-          catBreedRepositoryProvider.overrideWithValue(mockRepo),
-        ],
+        overrides: [catBreedRepositoryProvider.overrideWithValue(mockRepo)],
       );
 
       final usecase = container.read(searchBreedsUseCaseProvider);

@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:prag_cat_breed/features/cat_breed/domain/entities/breed.dart';
 import 'package:prag_cat_breed/features/cat_breed/presentation/screens/breed_detail_screen.dart';
@@ -10,7 +10,7 @@ class MasButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isIOS
+    return defaultTargetPlatform == TargetPlatform.iOS
         ? CupertinoButton(
             padding: EdgeInsets.zero,
             child: Text(

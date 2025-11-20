@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prag_cat_breed/features/cat_breed/domain/entities/breed.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/widgets/chip_platform.dart';
+import 'package:prag_cat_breed/features/cat_breed/presentation/widgets/rating_row.dart';
 
 class BreedDetailScreen extends StatelessWidget {
   const BreedDetailScreen({super.key, required this.breed});
@@ -160,51 +162,4 @@ class ContentDetail extends StatelessWidget {
   }
 }
 
-class ChipPlatform extends StatelessWidget {
-  const ChipPlatform({super.key, required this.text});
-  final String text;
 
-  @override
-  Widget build(BuildContext context) {
-    return Platform.isIOS
-        ? CupertinoButton.filled(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            onPressed: () {},
-            child: Text(text),
-          )
-        : Chip(label: Text(text));
-  }
-}
-
-class RatingRow extends StatelessWidget {
-  final String title;
-  final int level;
-
-  const RatingRow({super.key, required this.title, required this.level});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-          Row(
-            children: List.generate(5, (index) {
-              return Icon(
-                index < level ? Icons.star : Icons.star_border,
-                size: 18,
-                color: Colors.amber,
-              );
-            }),
-          ),
-        ],
-      ),
-    );
-  }
-}
